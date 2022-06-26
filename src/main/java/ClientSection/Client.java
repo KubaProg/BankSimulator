@@ -8,7 +8,7 @@ private String name;
 private String surname;
 private int age;
 private int id;
-private Account account;
+private int accountNumber;
 
     public String getSurname() {
         return surname;
@@ -18,20 +18,12 @@ private Account account;
         this.surname = surname;
     }
 
-    public Account getAccount() {
-        return account;
-    }
-
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    public Client(String name, String secondName, int age, int id, Account account) {
+    public Client(String name, String secondName, int age, int id, int accountNumber) {
         this.name = name;
         this.surname = secondName;
         this.age = age;
         this.id = id;
-        this.account = account;
+        this.accountNumber = accountNumber;
     }
 
     public Client(){}
@@ -75,7 +67,6 @@ private Account account;
                 + "LastName: " + surname + "\n"
                 + "Age: " + age + "\n"
                 + "Id: " + id + "\n"
-                + "Account's  number: " + account.getAccountNumber() + "\n"
-                + "Account's balance: " + account.getBalance();
+                + "Account's  number: " + accountNumber + "\n";
     }
 }

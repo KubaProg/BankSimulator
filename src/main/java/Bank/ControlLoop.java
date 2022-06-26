@@ -112,7 +112,7 @@ public class ControlLoop {
 
     public void printAdminsMenu() {
             System.out.print("Admins's menu: \n" +
-                    "1. Check clients list \n" +
+                    "1. Check clients list (saved in file): \n" +
                     "2. Add Client \n" +
                     "3. Search for client by ID \n" +
                     "4. Exit Admin's account \n");

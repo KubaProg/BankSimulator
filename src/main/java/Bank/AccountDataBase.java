@@ -33,17 +33,19 @@ public class AccountDataBase {
     }
 
     public Account makeAccountForClient(){
-        System.out.println("Podaj balans konta nowego klienta: ");
+        System.out.println("Enter the account balance: ");
         double balance = scanner.nextDouble();
 
-        System.out.println("Podaj numer konta nowego klienta: ");
+        System.out.println("Enter the account number: ");
         int accountNumber = scanner.nextInt();
+        scanner.nextLine();
 
-        System.out.println("Podaj login do konta nowego klienta: ");
+        System.out.println("Enter the login to the new account: ");
         String login = scanner.nextLine();
 
-        System.out.println("Podaj haslo do konta nowego klienta: ");
+        System.out.println("Enter the password to the new account: ");
         String password = scanner.nextLine();
+        scanner.nextLine();
 
         return new Account(balance,accountNumber, login, password);
     }

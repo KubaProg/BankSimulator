@@ -1,5 +1,9 @@
 package Bank;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +12,7 @@ public class AccountDataBase {
 
    static List<Account> clientAccounts = new ArrayList<>();
     Scanner scanner = new Scanner(System.in);
+    String fileName = "accountInfo.csv";
 
    public void addAccount(Double balance, int accountNumber, String login, String password){
        Account account = new Account(balance,accountNumber,login,password);
@@ -60,6 +65,27 @@ public class AccountDataBase {
             }
         }
        return properAccont;
+    }
+
+    public void logIntoClientsAccount(){
+        System.out.println("Enter login: ");
+        String login = scanner.nextLine();
+        System.out.println("Enter password: ");
+        String password = scanner.nextLine();
+
+        try(
+                var fileReader = new FileReader(fileName);
+                var bufferedReader = new BufferedReader(fileReader);
+                ){
+            String currentLine=null;
+            while((currentLine = bufferedReader.readLine())!=null){
+                String[] separatedData = currentLine.split(",");
+                if(password.equals(separatedData[3]))
+            }
+        } catch (IOException e) {
+            System.out.println("Problem z plikiem: " + fileName);
+        }
+
     }
 
 }

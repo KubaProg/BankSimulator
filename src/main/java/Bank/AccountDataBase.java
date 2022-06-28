@@ -1,12 +1,11 @@
 package Bank;
 
+import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class AccountDataBase {
 
@@ -67,25 +66,48 @@ public class AccountDataBase {
        return properAccont;
     }
 
-    public void logIntoClientsAccount(){
-        System.out.println("Enter login: ");
-        String login = scanner.nextLine();
-        System.out.println("Enter password: ");
-        String password = scanner.nextLine();
+    public String[] askClientForLogAndPas(){
+           System.out.println("Enter login: ");
+           String login = scanner.nextLine();
+           System.out.println("Enter password: ");
+           String password = scanner.nextLine();
+           String[] tab = {login, password};
+            return tab;
+    }
+
+    public Optional<Account> veryfiClientsAccountByLogAndPass(){
+       boolean test = true;
+while(test){
+        String[] logAndPasTab = askClientForLogAndPas();
+        String login = logAndPasTab[0];
+        String password = logAndPasTab[1];;
 
         try(
                 var fileReader = new FileReader(fileName);
                 var bufferedReader = new BufferedReader(fileReader);
-                ){
-            String currentLine=null;
-            while((currentLine = bufferedReader.readLine())!=null){
+                ) {
+            String currentLine = null;
+            while ((currentLine = bufferedReader.readLine()) != null) {
                 String[] separatedData = currentLine.split(",");
-                if(password.equals(separatedData[3]))
+                if (password.equals(separatedData[2]) && login.equals(separatedData[3])) {
+                    test = false;
+                    double balance = Double.parseDouble(separatedData[0]);
+                    int accountNumber = Integer.parseInt(separatedData[1]);
+                    Account properAccount = new Account(balance, accountNumber, password, login);
+                    return Optional.of(properAccount);
+                }
             }
-        } catch (IOException e) {
+            System.err.println("Wrong login or password");
+        }
+        catch (IOException e) {
             System.out.println("Problem z plikiem: " + fileName);
         }
+        }
+        return Optional.empty();
+    }
 
+    public void showClientsBalance(Account account)      {
+        System.out.println(account.getBalance());
     }
 
 }

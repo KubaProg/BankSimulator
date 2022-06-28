@@ -2,7 +2,9 @@ package Bank;
 
 import ClientSection.ClientDataBase;
 
+import javax.swing.*;
 import java.util.InputMismatchException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ControlLoop {
@@ -22,7 +24,6 @@ public class ControlLoop {
          while(exitOrNot) {
              printInitialMenu();
              initialChoiceChecker();
-
          }
      }
 
@@ -32,8 +33,9 @@ public class ControlLoop {
 
            switch (choice) {
                case 1 ->{
-                   clientsChoiceChecker(accountDataBase.getClientByAccNum(logPasVerification.verifyClientsAccountByLogAndPass()));
+                   Optional<Account> properAccount = accountDataBase.veryfiClientsAccountByLogAndPass();
                    printClientsMenu();
+                   clientsChoiceChecker(properAccount);
                }
                case 2 -> {
                    logPasVerification.verifyAdminsAccountByLogAndPass();
@@ -71,7 +73,7 @@ public class ControlLoop {
         }
     }
 
-    public void clientsChoiceChecker(Account account)
+    public void clientsChoiceChecker(Optional<Account> account)
     {
         boolean exitOrNotForClientsMenu = true;
         while(exitOrNotForClientsMenu) {
@@ -79,15 +81,28 @@ public class ControlLoop {
                 choice = scanner.nextInt();
 
                 switch (choice) {
-                    case 1 -> System.out.println(account.getBalance());
+                    case 1 -> System.out.println(account.get().getBalance());
                     case 2 -> exchangeMenu();
-                    case 3 -> transferMenu();
+                    case 3 -> {
+                        transferMenu();
+                        transferChoiceChecker(account);
+                    }
                     case 4 -> exitOrNotForClientsMenu = false;
                 }
                 printClientsMenu();
             } catch (InputMismatchException e) {
                 System.err.println("There is not option like this! Must be 1-3");
             }
+        }
+    }
+
+    public void transferChoiceChecker(Optional<Account> account){
+         TransferManager transferManager = new TransferManager();
+        System.out.println("Option: ");
+        int option = scanner.nextInt();
+        switch(option) {
+            case 1 -> transferManager.depositeMoney(account);
+            case 2 -> System.out.println("sth 2");
         }
     }
 
@@ -104,7 +119,7 @@ public class ControlLoop {
 
              System.out.print("Client's menu: \n" +
                      "1. Check Balance \n" +
-                     "2. Exchange money \n" +
+                     "2. Exchange money (not ready) \n" +
                      "3. Transfer \n" +
                      "4. Exit Client's account \n");
 
@@ -130,9 +145,9 @@ public class ControlLoop {
     }
 
     public void transferMenu(){
-        System.out.print("Exchange menu: \n" +
-                "1. Deposit \n" +
-                "2. Withdraw \n"
+        System.out.print("Transfer menu: \n" +
+                "1. Deposit to your account \n" +
+                "2. Make a transfer \n"
         );
     }
 

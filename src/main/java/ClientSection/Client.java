@@ -25,7 +25,6 @@ private int accountNumber;
         this.id = id;
         this.accountNumber = accountNumber;
     }
-
     public Client(){}
 
     public String getName() {

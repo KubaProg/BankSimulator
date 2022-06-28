@@ -9,38 +9,6 @@ public class LogPasVerification {
 
     Scanner scanner = new Scanner(System.in);
 
-public int verifyClientsAccountByLogAndPass() {
-    int accountNumber = 0;
-    boolean isWrongData = true;
-
-    while (isWrongData)
-    {
-        takeDataFromUser();
-    if (login.equals("log1") && password.equals("pas1")) {
-        accountNumber = 123;
-        isWrongData=false;
-        System.out.println("Succesfuly logged in!");
-        printClientsMenu();
-    } else if (login.equals("log2") && password.equals("pas2")) {
-        accountNumber = 876;
-        isWrongData=false;
-        System.out.println("Succesfuly logged in!");
-        printClientsMenu();
-    } else if (login.equals("log3") && password.equals("pas3")) {
-        isWrongData=false;
-        accountNumber = 342;
-        System.out.println("Succesfuly logged in!");
-        printClientsMenu();
-    } else {
-        System.out.println("Wrong login and/or password");
-    }
-}
-    return accountNumber;
-
-}
-
-
-
     public void verifyAdminsAccountByLogAndPass(){
         boolean isWrongData = true;
         while(isWrongData) {
@@ -56,10 +24,10 @@ public int verifyClientsAccountByLogAndPass() {
     }
 
     public void takeDataFromUser(){
-        System.out.print("Podaj login: ");
+        System.out.print("Podaj login(admin): ");
         login = scanner.nextLine();
         System.out.println();
-        System.out.print("Podaj haslo: ");
+        System.out.print("Podaj haslo(admin): ");
         password = scanner.nextLine();
     }
 

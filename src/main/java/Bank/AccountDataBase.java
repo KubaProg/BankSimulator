@@ -97,7 +97,6 @@ while(wrongData){
                     return Optional.of(properAccount);
                 }
             }
-            System.err.println("Wrong login or password");
         }
         catch (IOException e) {
             System.out.println("Problem z plikiem: " + fileName);

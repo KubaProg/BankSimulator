@@ -147,7 +147,8 @@ public class ControlLoop {
     public void transferMenu(){
         System.out.print("Transfer menu: \n" +
                 "1. Deposit to your account \n" +
-                "2. Make a transfer \n"
+                "2. Make a transfer \n" +
+                "3. Exit \n"
         );
     }
 

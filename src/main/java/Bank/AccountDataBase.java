@@ -76,8 +76,8 @@ public class AccountDataBase {
     }
 
     public Optional<Account> veryfiClientsAccountByLogAndPass(){
-       boolean test = true;
-while(test){
+       boolean wrongData = true;
+while(wrongData){
         String[] logAndPasTab = askClientForLogAndPas();
         String login = logAndPasTab[0];
         String password = logAndPasTab[1];;
@@ -90,7 +90,7 @@ while(test){
             while ((currentLine = bufferedReader.readLine()) != null) {
                 String[] separatedData = currentLine.split(",");
                 if (password.equals(separatedData[2]) && login.equals(separatedData[3])) {
-                    test = false;
+                    wrongData = false;
                     double balance = Double.parseDouble(separatedData[0]);
                     int accountNumber = Integer.parseInt(separatedData[1]);
                     Account properAccount = new Account(balance, accountNumber, password, login);

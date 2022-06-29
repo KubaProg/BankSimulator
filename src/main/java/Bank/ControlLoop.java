@@ -102,7 +102,7 @@ public class ControlLoop {
         int option = scanner.nextInt();
         switch(option) {
             case 1 -> transferManager.depositeMoney(account);
-            case 2 -> System.out.println("sth 2");
+            case 2 -> transferManager.transferMoney(account);
         }
     }
 

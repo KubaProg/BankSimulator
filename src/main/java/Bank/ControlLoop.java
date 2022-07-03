@@ -64,7 +64,8 @@ public class ControlLoop {
                     case 1 -> clientDataBase.printClients();
                     case 2 -> clientDataBase.makeAndAddClient();
                     case 3 -> clientDataBase.searchForClientById();
-                    case 4 -> exitOrNotForAdminsMenu = false;
+                    case 4 -> clientDataBase.deleteClient();
+                    case 5 -> exitOrNotForAdminsMenu = false;
                 }
                 printAdminsMenu();
             } catch (InputMismatchException e) {
@@ -106,6 +107,8 @@ public class ControlLoop {
         }
     }
 
+   // Hejka, mam plany z 2 kumplami jechać jutro do klubu Arkady w Lublińcu, jest wstęp 16+ i mamy 2 miejsca wolne w samochodzie. Jeśli macie ochotę się poznać i pobawić to zapraszam z nami :))
+
     public void printInitialMenu(){
              System.out.println("Welcome! ");
              System.out.println("MENU: (choose the option between 1-3)");
@@ -130,7 +133,8 @@ public class ControlLoop {
                     "1. Check clients list (saved in file): \n" +
                     "2. Add Client \n" +
                     "3. Search for client by ID \n" +
-                    "4. Exit Admin's account \n");
+                    "4. Delete client by ID \n" +
+                    "5. Exit Admin's account \n");
     }
 
     public void exchangeMenu(){

@@ -24,10 +24,10 @@ public class LogPasVerification {
     }
 
     public void takeDataFromUser(){
-        System.out.print("Podaj login(admin): ");
+        System.out.print("Enter login(admin): ");
         login = scanner.nextLine();
         System.out.println();
-        System.out.print("Podaj haslo(admin): ");
+        System.out.print("Enter haslo(admin): ");
         password = scanner.nextLine();
     }
 

@@ -40,9 +40,6 @@ public class ClientDataBase {
         int accountNumber = scanner.nextInt();
         scanner.nextLine();
 
-   //     Account newAccount = accountDataBase.makeAccountForClient();
-
-    // addClient(name,surName,age,id, accountNumber);
         try {
             saveClient(name,surName,age,id, accountNumber);
         } catch (IOException e) {
@@ -60,12 +57,35 @@ public class ClientDataBase {
         }
     }
 
+    public void deleteClient(){
+        File inputFile = new File("clientsList.csv");
+        File tempFile = new File("myTempFile.csv");
+
+        System.out.println("Client's to delete id: ");
+        String id = scanner.nextLine();
+
+        try(
+                var reader = new BufferedReader(new FileReader(inputFile));
+                var writer = new BufferedWriter(new FileWriter(tempFile));
+                ){
+            String currentLine;
+
+            while((currentLine = reader.readLine()) != null) {
+                String[] splitedLine = currentLine.split(",");
+                String currentClientsId = splitedLine[3];
+                if(currentClientsId.equals(id)) continue;
+                writer.write(currentLine);
+                writer.newLine();
+            }
+        }catch(IOException e){
+            System.err.println("There is no file: " + inputFile.getName() + " or " + tempFile.getName());
+        }
+
+        inputFile.delete();
+        boolean successful = tempFile.renameTo(inputFile);
+    }
+
     public void printClients(){
-        // Previous version with data for testing
-        /*for (Client client : clients) {
-            System.out.println(client);
-            System.out.println();
-        }*/
 
         try
                 (var fileReader = new FileReader(fileName);

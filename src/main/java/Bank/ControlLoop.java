@@ -107,8 +107,6 @@ public class ControlLoop {
         }
     }
 
-   // Hejka, mam plany z 2 kumplami jechać jutro do klubu Arkady w Lublińcu, jest wstęp 16+ i mamy 2 miejsca wolne w samochodzie. Jeśli macie ochotę się poznać i pobawić to zapraszam z nami :))
-
     public void printInitialMenu(){
              System.out.println("Welcome! ");
              System.out.println("MENU: (choose the option between 1-3)");
